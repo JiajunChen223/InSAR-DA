@@ -1,0 +1,46 @@
+# Python caches and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Packaging outputs
+build/
+dist/
+*.egg-info/
+
+# Test and tooling caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Local runtime artifacts
+runtime/runs/
+runtime/cache/
+runtime/summary/
+runtime/**/*.pt
+runtime/**/*.pth
+runtime/**/*.ckpt
+runtime/**/*.npz
+runtime/**/*.json
+runtime/**/*.yaml
+
+# Local/private data staging
+data/raw/
+data/private/
+data/tmp/
+
+# Editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

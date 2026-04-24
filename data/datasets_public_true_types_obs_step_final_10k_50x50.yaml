@@ -1,0 +1,32 @@
+datasets:
+  - domain_id: 1
+    name: Subsidence_Po_River_Piacenza
+    hazard_type: subsidence
+    source_tag: TS_INGV_ITA_S-1_2015_2022_UAZ
+    path: domains_10k_50x50/Subsidence_Po_River_Piacenza/sampled_10000_grid50x50_seed42.npz
+  - domain_id: 2
+    name: Subsidence_Como
+    hazard_type: subsidence
+    source_tag: TS_INGV_ITA_CSK_2010_2019_FCQ
+    path: domains_10k_50x50/Subsidence_Como/sampled_10000_grid50x50_seed42.npz
+  - domain_id: 3
+    name: Volcano_Aeolian_Islands
+    hazard_type: volcano
+    source_tag: TS_INGV_ITA_S-1_2016_2023_DDZ
+    path: domains_10k_50x50/Volcano_Aeolian_Islands/sampled_10000_grid50x50_seed42.npz
+  - domain_id: 4
+    name: Volcano_Campi_Flegrei
+    hazard_type: volcano
+    source_tag: TS_INGV_ITA_S-1_2016_2023_DCL
+    path: domains_10k_50x50/Volcano_Campi_Flegrei/sampled_10000_grid50x50_seed42.npz
+  - domain_id: 5
+    name: Landslide_Saline_Joniche
+    hazard_type: landslide
+    source_tag: TS_INGV_ITA_CSK_2015_2023_FIW
+    path: domains_10k_50x50/Landslide_Saline_Joniche/sampled_10000_grid50x50_seed42.npz
+  - domain_id: 6
+    name: Landslide_Bagnoregio
+    hazard_type: landslide
+    source_tag: TS_INGV_ITA_CSK_2012_2020_OJG
+    path: domains_10k_50x50/Landslide_Bagnoregio/sampled_10000_grid50x50_seed42.npz
+

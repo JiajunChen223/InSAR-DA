@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software or the included sampled data, please cite it as below and cite the original data providers listed in DATASET.md."
+title: "InSAR-DA: Low-Supervision Domain Adaptation for InSAR Deformation Time Series"
+version: 0.1.0
+date-released: 2026-04-25
+license: MIT
+authors:
+  - family-names: "Chen"
+    given-names: "Jiajun"
+    affiliation: "College of Earth Sciences, Jilin University"
+repository-code: "https://github.com/JiajunChen223/InSAR-DA"
+url: "https://github.com/JiajunChen223/InSAR-DA"
+abstract: "Formal experiment core for low-supervision domain adaptation on sampled public InSAR deformation time-series domains."
+keywords:
+  - InSAR
+  - domain adaptation
+  - low-supervision learning
+  - deformation time series

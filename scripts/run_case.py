@@ -1,0 +1,10 @@
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str((Path(__file__).resolve().parents[1] / "src").resolve()))
+
+from insarda.cli.run_case import main
+
+
+if __name__ == "__main__":
+    main()

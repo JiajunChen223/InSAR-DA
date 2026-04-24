@@ -1,0 +1,103 @@
+config:
+  paths:
+    dataset_registry: ../data/datasets_public_true_types_obs_step_final_10k_50x50.yaml
+    run_root: ../runtime/runs
+    summary_root: ../runtime/summary
+    cache_root: ../runtime/cache
+
+  data:
+    input_window: 20
+    horizon: 5
+    split_layout: role_aware_source703_target523
+    source_split_ratio: 0.7
+    target_adapt_ratio: 0.5
+    target_val_ratio: 0.2
+    target_labeled_ratio: 0.01
+    target_labeled_ratios: [0.005, 0.01, 0.025, 0.05]
+    target_labeled_sampling_seed_policy: run_seed
+    target_labeled_sampling_strategy: deformation_gradient_stratified
+    target_labeled_strata: 5
+    source_train_stride: 5
+    source_val_stride: 5
+    target_adapt_stride: 5
+    target_test_stride: 5
+
+  model:
+    dropout: 0.1
+    transformer_d_model: 128
+    transformer_nhead: 4
+    transformer_num_layers: 2
+    transformer_ff_dim: 224
+
+  training:
+    epochs: 100
+    batch_size: 2048
+    eval_batch_size: 2048
+    learning_rate: 0.0005
+    weight_decay: 0.0001
+    patience: 12
+    min_delta: 0.0005
+    ema_decay: 0.995
+    grad_clip_norm: 5.0
+    mixed_precision: bf16
+    allow_tf32: true
+    cudnn_benchmark: true
+    device: auto
+    target_aware_budget_mode: matched_target_labeled_updates
+    target_aware_disable_early_stopping: true
+
+  methods:
+    source_only:
+      source_supervision_weight: 1.0
+
+    target_only:
+      target_supervision_weight: 1.0
+
+    supervised_fine_tuning:
+      source_supervision_weight: 1.0
+      target_supervision_weight: 1.0
+      source_pretrain_epochs: 60
+
+    st_joint:
+      source_supervision_weight: 1.0
+      target_supervision_weight: 0.6
+
+    ss_dann:
+      source_supervision_weight: 1.0
+      target_supervision_weight: 0.6
+      domain_weight: 0.05
+
+    ss_mt:
+      source_supervision_weight: 1.0
+      target_supervision_weight: 0.6
+      target_consistency_weight: 0.02
+      confidence_quantile: 0.2
+
+    ss_coral:
+      source_supervision_weight: 1.0
+      target_supervision_weight: 0.6
+      domain_weight: 0.05
+
+    sft_replay:
+      source_supervision_weight: 1.0
+      target_supervision_weight: 1.0
+      source_pretrain_epochs: 60
+      replay_source_weight: 0.15
+
+  experiments:
+    main:
+      protocols: [CHT, IHT, LODO]
+      methods:
+        [
+          source_only,
+          target_only,
+          supervised_fine_tuning,
+          st_joint,
+          ss_dann,
+          ss_mt,
+          ss_coral,
+          sft_replay,
+        ]
+      backbones: [transformer]
+      label_rates: [0.005, 0.01, 0.025, 0.05]
+      seeds: [42, 43, 44]
