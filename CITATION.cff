@@ -10,7 +10,7 @@ authors:
     affiliation: "College of Earth Sciences, Jilin University"
 repository-code: "https://github.com/JiajunChen223/InSAR-DA"
 url: "https://github.com/JiajunChen223/InSAR-DA"
-abstract: "Formal experiment core for low-supervision domain adaptation on sampled public InSAR deformation time-series domains."
+abstract: "Research code for controlled low-supervision domain adaptation experiments on sampled public InSAR deformation time-series domains."
 keywords:
   - InSAR
   - domain adaptation

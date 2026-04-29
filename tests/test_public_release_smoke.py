@@ -44,7 +44,9 @@ def test_required_release_documents_exist() -> None:
         "DATASET.md",
         "CITATION.cff",
         "CONTRIBUTING.md",
+        "CODE_OF_CONDUCT.md",
         "RELEASE_CHECKLIST.md",
+        "SECURITY.md",
         ".gitignore",
     ]:
         assert (ROOT / name).exists(), name
