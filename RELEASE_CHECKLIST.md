@@ -1,29 +1,24 @@
-# Open-Source Release Checklist
+# Release Checklist
 
-Use this checklist before publishing the repository.
+Use this checklist when preparing a new public release or paper-aligned tag.
 
-## Required Before Public Release
+## Required
 
-- [x] Confirm the code copyright holder in `LICENSE`.
-- [ ] Confirm that MIT is the intended code license, or replace `LICENSE` and
-      `pyproject.toml` with the intended OSI-approved license.
-- [x] Replace the author fields in `CITATION.cff`.
-- [x] Replace `repository-code` and `url` in `CITATION.cff` after creating the
-      public repository or archive.
-- [x] Fill every DOI/URL, license, and attribution field in `DATASET.md`.
-- [ ] Confirm that each included `.npz` file may be redistributed publicly.
-- [x] Confirm whether COSMO-SkyMed-derived products have redistribution terms
-      compatible with the chosen public release.
-- [x] Remove or keep ignored any local-only `runtime/` outputs.
-- [x] Run `python -m pytest`.
-- [ ] Run at least one documented `scripts/run_case.py` command from a clean
-      clone or fresh environment.
+- Confirm the MIT code license in `LICENSE`.
+- Keep author and repository metadata current in `CITATION.cff`.
+- Keep dataset source tags, license notes, and attribution current in `DATASET.md`.
+- Run `python -m pytest`.
+- Run at least one documented case command from a clean environment:
 
-## Optional But Recommended
+```bash
+python scripts/run_case.py --protocol IHT --case 0 --method source_only --seed 42 --label-rate 0.005
+```
 
-- [ ] Publish full trained weights and generated predictions as a separate
-      GitHub Release, Zenodo record, or institutional archive instead of the
-      source repository.
-- [ ] Add a paper DOI or preprint DOI to `CITATION.cff`.
-- [ ] Add badges after CI is configured.
-- [ ] Configure GitHub Actions to run the smoke tests on pull requests.
+- Confirm that generated `runtime/` outputs, checkpoints, caches, and local paths are not staged.
+
+## Recommended
+
+- Add a paper DOI or preprint DOI to `CITATION.cff` when available.
+- Publish trained weights, predictions, and full summary artifacts through a GitHub Release, Zenodo record, or institutional archive.
+- Add CI badges after GitHub Actions or another test runner is configured.
+- Tag the repository version that corresponds to each submitted or published manuscript.

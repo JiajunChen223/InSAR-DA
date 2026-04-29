@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "insarda"
 version = "0.1.0"
-description = "Formal InSAR domain adaptation pipeline"
+description = "Low-supervision domain adaptation for InSAR deformation time series"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
