@@ -22,11 +22,41 @@ Each `.npz` file contains:
 - `displacement_full`: `float32` array with shape `(num_points, num_observations)`.
 - `dates`: `int32` observation-step index array.
 - `latlon`: `float32` array with shape `(num_points, 2)`.
+- `optional__point_id`: sampled point identifiers retained from the processed
+  source product when available.
 - `optional__*`: auxiliary fields retained from the processed source product.
 - `metadata_json`: JSON metadata for the sampled public archive.
 
 The sampled files contain 10,000 points per domain selected with a 50 x 50 grid
 sampling layout and seed `42`.
+
+## Benchmark Registry And Splits
+
+The formal benchmark reads the sampled-domain registry from:
+
+```text
+data/datasets_public_true_types_obs_step_final_10k_50x50.yaml
+```
+
+The registry and configuration define 24 transfer tasks across LODO, IHT, and
+CHT protocols. The main benchmark configuration is:
+
+```text
+configs/main.yaml
+```
+
+The task protocol uses 20 input steps, five forecast steps, and stride-five
+window subsampling for the formal training and test partitions. Source windows
+are split 7:3 into source-training and source-validation time bands. Target
+windows are split into adaptation, validation, and test time bands at 5:2:3.
+Target adaptation-label rates are point-level budgets of 0.5%, 1%, 2.5%, and
+5% of the 10,000 target-domain points. Target-label sampling uses the run seeds
+`42`, `43`, and `44`, separately from the sampled-domain grid seed `42`.
+
+The target validation band is used for protocol-level model selection in
+target-aware methods and is not part of the target adaptation-label budget.
+The target test band is not used for training, validation, normalization, or
+model selection.
 
 ## Provenance And License
 

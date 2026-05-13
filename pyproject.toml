@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "insarda"
-version = "0.1.0"
-description = "Formal InSAR domain adaptation pipeline"
+version = "1.0.0"
+description = "Formal low-label MT-InSAR transfer-risk benchmark"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [{ name = "Jiajun Chen" }]
-keywords = ["InSAR", "domain adaptation", "low-supervision learning", "time series"]
+keywords = ["InSAR", "MT-InSAR", "domain adaptation", "low-label learning", "transfer-risk benchmark", "time series"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",

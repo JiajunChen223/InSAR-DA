@@ -1,11 +1,14 @@
 # InSAR-DA
 
-InSAR-DA is a formal experiment core for low-supervision domain adaptation on
-sampled public InSAR deformation time-series domains.
+InSAR-DA is the formal experiment core for transfer-risk benchmarking in
+low-label MT-InSAR deformation forecasting. It fixes sampled public GeoSAR
+domains, transfer tasks, label budgets, temporal splits, target-test access,
+model capacity, and random seeds so that methods are compared by transfer
+organization rather than by changing data construction or tuning scope.
 
 Author: Jiajun Chen, College of Earth Sciences, Jilin University.
 
-## Scope
+## Benchmark Scope
 
 - Methods: `source_only`, `target_only`, `supervised_fine_tuning`, `st_joint`,
   `ss_dann`, `ss_mt`, `ss_coral`, `sft_replay`
@@ -13,6 +16,8 @@ Author: Jiajun Chen, College of Earth Sciences, Jilin University.
 - Label rates: `0.005`, `0.01`, `0.025`, `0.05`
 - Seeds: `42`, `43`, `44`
 - Backbone: `transformer`
+- Target split: adaptation/validation/test time bands at 5:2:3
+- Sampling: 10,000 points per domain on a 50 x 50 grid, sampling seed `42`
 
 ## Repository Layout
 
@@ -50,11 +55,21 @@ PyYAML, and PyTorch. GPU execution is selected automatically when available.
 
 ## Quick Start
 
+Run the release smoke tests:
+
+```bash
+python -m pytest
+```
+
 Run one case:
 
 ```bash
 python scripts/run_case.py --protocol IHT --case 0 --method source_only --seed 42 --label-rate 0.005
 ```
+
+Expected one-case outputs are written to a timestamped directory under
+`runtime/runs/` and include `metrics.json`, `config_snapshot.yaml`,
+`train_history.json`, `model.pt`, `method.pt`, and `predictions.npz`.
 
 Run one protocol sweep:
 
@@ -91,16 +106,21 @@ machine-specific config snapshots are generated artifacts.
 ## Data
 
 The included `.npz` files are sampled InSAR time-series archives. See
-`DATASET.md` for the file format, source tags, and the source-data attribution
-fields that must be completed before a public release.
+`DATASET.md` for the file format, source tags, source-data attribution,
+selected point identifiers, grid metadata, task definitions, temporal split
+rules, and target-label seed policy used by the benchmark.
 
-## Tests
+## Reproduction Entry Points
 
-Run the release smoke tests:
+- Main configuration: `configs/main.yaml`
+- One formal case: `scripts/run_case.py`
+- One protocol sweep: `scripts/run_sweep.py`
+- Full formal matrix: `scripts/run_official_matrix.py`
+- Summary tables: `scripts/summarize.py`
 
-```bash
-python -m pytest
-```
+The formal matrix covers 24 transfer tasks, 8 methods, 4 target adaptation-label
+rates, and 3 random seeds. Full-matrix execution is substantially longer than
+the smoke tests and writes generated artifacts under `runtime/`.
 
 ## Citation
 
